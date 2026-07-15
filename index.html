@@ -1,0 +1,1110 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dim Check Club 掂策會</title>
+  <meta name="description" content="Dim Check Club 掂策會，一頁式入口主頁。">
+  <style>
+    :root {
+      --bg: #050806;
+      --bg-2: #0b100d;
+      --panel: rgba(12, 18, 15, .82);
+      --panel-2: rgba(18, 27, 22, .74);
+      --ink: #f5f8ef;
+      --muted: #a8b1a8;
+      --line: rgba(205, 255, 0, .22);
+      --line-soft: rgba(255, 255, 255, .11);
+      --acid: #c8ff00;
+      --acid-2: #88b900;
+      --gold: #f5d35d;
+      --shadow: 0 24px 80px rgba(0, 0, 0, .45);
+      --max: 1180px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 76% 9%, rgba(200, 255, 0, .26), transparent 300px),
+        radial-gradient(circle at 16% 36%, rgba(105, 165, 0, .16), transparent 260px),
+        linear-gradient(180deg, #020403 0%, var(--bg) 44%, #060a07 100%);
+      letter-spacing: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(200, 255, 0, .035) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(200, 255, 0, .025) 1px, transparent 1px);
+      background-size: 88px 88px;
+    }
+
+    .shell {
+      width: min(var(--max), calc(100vw - 34px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 24px 0 10px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand-mark,
+    .brand-footer-mark {
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: #101607;
+      background: linear-gradient(135deg, var(--acid), #6e9400);
+      font-weight: 950;
+      box-shadow: 0 0 28px rgba(200, 255, 0, .24);
+    }
+
+    .brand-mark {
+      width: 56px;
+      height: 56px;
+      font-size: 22px;
+    }
+
+    .brand-footer-mark {
+      width: 48px;
+      height: 48px;
+      font-size: 19px;
+    }
+
+    .brand-title {
+      margin: 0;
+      font-size: clamp(24px, 3vw, 38px);
+      line-height: 1;
+      font-weight: 950;
+      white-space: nowrap;
+    }
+
+    .brand-title span {
+      color: var(--acid);
+    }
+
+    .brand-sub {
+      margin: 5px 0 0;
+      color: var(--ink);
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 44px;
+      padding: 0 18px;
+      border: 1px solid var(--acid-2);
+      border-radius: 999px;
+      color: var(--ink);
+      background: rgba(5, 8, 6, .72);
+      font-weight: 850;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .04);
+    }
+
+    .hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, .92fr) minmax(390px, 1.08fr);
+      gap: 28px;
+      align-items: center;
+      min-height: 650px;
+      padding: 44px 0 68px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 9% -18% 4% 42%;
+      z-index: -1;
+      background:
+        radial-gradient(ellipse at center, rgba(200, 255, 0, .18), transparent 53%),
+        linear-gradient(105deg, transparent 0%, rgba(200, 255, 0, .16) 45%, transparent 68%);
+      filter: blur(2px);
+      transform: skewY(-8deg);
+    }
+
+    .kicker {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      padding: 7px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--acid);
+      background: rgba(200, 255, 0, .06);
+      font-size: 13px;
+      font-weight: 850;
+    }
+
+    .hero h1 {
+      margin: 0;
+      max-width: 650px;
+      font-size: clamp(58px, 8vw, 104px);
+      line-height: .94;
+      font-weight: 1000;
+      letter-spacing: 0;
+    }
+
+    .hero h1 span {
+      display: block;
+      color: var(--acid);
+      text-shadow: 0 0 32px rgba(200, 255, 0, .34);
+    }
+
+    .hero-copy {
+      max-width: 520px;
+      margin: 22px 0 0;
+      color: var(--ink);
+      font-size: clamp(18px, 2vw, 23px);
+      line-height: 1.8;
+      font-weight: 650;
+    }
+
+    .hero-copy strong {
+      color: var(--acid);
+    }
+
+    .cta-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .app-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      min-height: 62px;
+      min-width: min(100%, 330px);
+      padding: 0 28px;
+      border: 0;
+      border-radius: 999px;
+      color: #111704;
+      background: linear-gradient(135deg, #ddff24 0%, var(--acid) 46%, #9cca00 100%);
+      box-shadow: 0 16px 48px rgba(200, 255, 0, .28), inset 0 -2px 0 rgba(0, 0, 0, .2);
+      font-size: 20px;
+      font-weight: 950;
+      white-space: nowrap;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    .app-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 64px rgba(200, 255, 0, .35), inset 0 -2px 0 rgba(0, 0, 0, .2);
+    }
+
+    .button-icon {
+      display: grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(17, 23, 4, .14);
+      font-size: 18px;
+      font-weight: 950;
+    }
+
+    .trust-pills {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 0 15px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: #dfe9d6;
+      background: rgba(0, 0, 0, .28);
+      font-size: 14px;
+      font-weight: 780;
+    }
+
+    .visual-stack {
+      position: relative;
+      min-height: 580px;
+    }
+
+    .visual-card {
+      position: absolute;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(200, 255, 0, .28);
+      border-radius: 28px;
+      color: rgba(245, 248, 239, .66);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, .09), rgba(255, 255, 255, .02)),
+        rgba(5, 8, 6, .86);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, .5), 0 0 44px rgba(200, 255, 0, .12);
+      overflow: hidden;
+    }
+
+    .visual-card::before {
+      content: "";
+      position: absolute;
+      inset: 16px;
+      border: 1px dashed rgba(200, 255, 0, .32);
+      border-radius: 20px;
+    }
+
+    .visual-card span {
+      position: relative;
+      z-index: 1;
+      padding: 18px;
+      text-align: center;
+      font-size: 15px;
+      font-weight: 850;
+    }
+
+    .phone-main {
+      right: 24%;
+      top: 34px;
+      width: 278px;
+      height: 545px;
+      transform: rotate(2deg);
+    }
+
+    .phone-side-left {
+      left: 3%;
+      top: 92px;
+      width: 212px;
+      height: 416px;
+      transform: rotate(-8deg);
+      opacity: .92;
+    }
+
+    .phone-side-right {
+      right: 0;
+      top: 102px;
+      width: 214px;
+      height: 418px;
+      transform: rotate(8deg);
+      opacity: .92;
+    }
+
+    .section {
+      padding: 44px 0;
+      border-top: 1px solid rgba(255, 255, 255, .08);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .section-head::before,
+    .section-head::after {
+      content: "";
+      display: block;
+      width: min(100px, 18vw);
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--acid));
+    }
+
+    .section-head::after {
+      background: linear-gradient(90deg, var(--acid), transparent);
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.2;
+      font-weight: 950;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .feature-card,
+    .plan-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, .055), rgba(255, 255, 255, .015)),
+        var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .feature-card {
+      min-height: 178px;
+      padding: 20px 15px;
+      text-align: center;
+    }
+
+    .feature-icon {
+      display: grid;
+      place-items: center;
+      width: 94px;
+      height: 86px;
+      margin: 0 auto 15px;
+      filter: drop-shadow(0 0 16px rgba(200, 255, 0, .26));
+    }
+
+    .feature-icon img,
+    .plan-symbol img,
+    .social img,
+    .contact-icon {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .feature-card h3,
+    .plan-card h3 {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.25;
+      font-weight: 920;
+    }
+
+    .feature-card p {
+      margin: 10px 0 0;
+      color: #d3dccd;
+      font-size: 14px;
+      line-height: 1.55;
+      font-weight: 650;
+    }
+
+    .screens-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .screen-shot {
+      min-height: 310px;
+      padding: 12px;
+      border: 1px solid rgba(255, 255, 255, .13);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .05);
+    }
+
+    .screen-shot h3 {
+      margin: 0 0 9px;
+      font-size: 16px;
+      line-height: 1.25;
+      text-align: center;
+    }
+
+    .image-placeholder {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: 100%;
+      min-height: 250px;
+      border: 1px dashed rgba(200, 255, 0, .36);
+      border-radius: 8px;
+      color: rgba(245, 248, 239, .62);
+      background:
+        linear-gradient(135deg, rgba(200, 255, 0, .08), transparent 42%),
+        rgba(0, 0, 0, .32);
+      text-align: center;
+      font-size: 13px;
+      font-weight: 850;
+    }
+
+    .screen-image {
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      border-radius: 6px;
+      object-fit: cover;
+      object-position: top;
+      background: #020706;
+    }
+
+    .plans {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+      align-items: stretch;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .plan-card {
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      min-height: 214px;
+      padding: 24px;
+    }
+
+    .plan-card.vip {
+      border-color: rgba(200, 255, 0, .58);
+      background:
+        radial-gradient(circle at 78% 0%, rgba(200, 255, 0, .2), transparent 180px),
+        linear-gradient(180deg, rgba(255, 255, 255, .07), rgba(255, 255, 255, .02)),
+        var(--panel);
+      box-shadow: 0 0 42px rgba(200, 255, 0, .15), var(--shadow);
+    }
+
+    .plan-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .plan-symbol {
+      display: grid;
+      place-items: center;
+      width: 50px;
+      height: 50px;
+      filter: drop-shadow(0 0 14px rgba(200, 255, 0, .28));
+    }
+
+    .plan-card ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: #dce6d6;
+      font-size: 15px;
+      line-height: 1.7;
+      font-weight: 650;
+    }
+
+    .plan-price {
+      margin: -4px 0 12px;
+      color: var(--acid);
+      font-size: 15px;
+      line-height: 1.45;
+      font-weight: 850;
+    }
+
+    .plan-card li::before {
+      content: "✓";
+      margin-right: 8px;
+      color: var(--acid);
+      font-weight: 950;
+    }
+
+    .plan-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 48px;
+      min-height: 48px;
+      margin-top: 18px;
+      border: 1px solid rgba(255, 255, 255, .46);
+      border-radius: 999px;
+      font-weight: 900;
+    }
+
+    .plan-link.primary {
+      border-color: transparent;
+      color: #111704;
+      background: var(--acid);
+    }
+
+    .bottom-cta {
+      position: relative;
+      padding: 46px 0;
+      background:
+        radial-gradient(circle at 18% 42%, rgba(200, 255, 0, .18), transparent 260px),
+        radial-gradient(circle at 88% 48%, rgba(200, 255, 0, .2), transparent 260px),
+        rgba(9, 14, 10, .88);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .bottom-inner {
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr) 220px;
+      gap: 26px;
+      align-items: center;
+    }
+
+    .wide-placeholder {
+      min-height: 150px;
+      border: 1px dashed rgba(200, 255, 0, .35);
+      border-radius: 8px;
+      background: rgba(0, 0, 0, .28);
+    }
+
+    .bottom-copy {
+      text-align: center;
+    }
+
+    .bottom-copy h2 {
+      margin: 0 0 20px;
+      font-size: clamp(28px, 4.4vw, 46px);
+      line-height: 1.2;
+      font-weight: 950;
+    }
+
+    .site-footer {
+      padding: 34px 0;
+      background: rgba(0, 0, 0, .38);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.25fr .9fr .85fr 1.1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .footer-title {
+      margin: 0 0 12px;
+      color: var(--ink);
+      font-size: 16px;
+      font-weight: 920;
+    }
+
+    .footer-text,
+    .footer-list {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+      font-weight: 600;
+    }
+
+    .footer-list {
+      padding: 0;
+      list-style: none;
+    }
+
+    .footer-list a {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .contact-icon {
+      width: 24px;
+      height: 24px;
+      flex: 0 0 auto;
+      filter: drop-shadow(0 0 8px rgba(200, 255, 0, .2));
+    }
+
+    .socials {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .social {
+      display: grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      filter: drop-shadow(0 0 12px rgba(200, 255, 0, .22));
+    }
+
+    .copyright {
+      margin: 24px 0 0;
+      color: #7f8a80;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .back-top {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      color: var(--acid);
+      background: rgba(4, 7, 5, .82);
+      font-weight: 950;
+      box-shadow: var(--shadow);
+    }
+
+    .floating-whatsapp {
+      position: fixed;
+      right: 18px;
+      bottom: 72px;
+      z-index: 10;
+      display: grid;
+      place-items: center;
+      width: 56px;
+      height: 56px;
+      border: 1px solid rgba(200, 255, 0, .62);
+      border-radius: 50%;
+      background: rgba(6, 12, 7, .9);
+      box-shadow: 0 0 24px rgba(200, 255, 0, .24), var(--shadow);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    .floating-whatsapp:hover {
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 0 32px rgba(200, 255, 0, .42), var(--shadow);
+    }
+
+    .floating-whatsapp img {
+      width: 46px;
+      height: 46px;
+      object-fit: contain;
+    }
+
+    @media (max-width: 1040px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding-top: 34px;
+      }
+
+      .visual-stack {
+        min-height: 500px;
+      }
+
+      .phone-main {
+        right: 50%;
+        transform: translateX(50%) rotate(2deg);
+      }
+
+      .phone-side-left {
+        left: 9%;
+      }
+
+      .phone-side-right {
+        right: 9%;
+      }
+
+      .feature-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .screens-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .shell {
+        width: min(100% - 26px, var(--max));
+      }
+
+      .topbar {
+        align-items: flex-start;
+      }
+
+      .brand-mark {
+        width: 48px;
+        height: 48px;
+      }
+
+      .brand-title {
+        font-size: 26px;
+      }
+
+      .brand-sub {
+        font-size: 13px;
+      }
+
+      .nav-cta {
+        display: none;
+      }
+
+      .hero {
+        padding: 28px 0 48px;
+      }
+
+      .hero h1 {
+        font-size: clamp(48px, 17vw, 72px);
+      }
+
+      .hero-copy {
+        font-size: 17px;
+      }
+
+      .app-button {
+        width: 100%;
+        min-width: 0;
+        min-height: 58px;
+        padding: 0 18px;
+        font-size: 18px;
+      }
+
+      .visual-stack {
+        min-height: 430px;
+      }
+
+      .phone-main {
+        top: 6px;
+        width: 230px;
+        height: 390px;
+      }
+
+      .phone-side-left,
+      .phone-side-right {
+        top: 68px;
+        width: 160px;
+        height: 300px;
+      }
+
+      .phone-side-left {
+        left: -5%;
+      }
+
+      .phone-side-right {
+        right: -5%;
+      }
+
+      .section {
+        padding: 34px 0;
+      }
+
+      .section-head {
+        gap: 14px;
+      }
+
+      .feature-grid,
+      .screens-grid,
+      .plans,
+      .bottom-inner,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .screen-shot {
+        min-height: 250px;
+      }
+
+      .image-placeholder {
+        min-height: 210px;
+      }
+
+      .wide-placeholder {
+        display: none;
+      }
+    }
+
+    /* Supplied artwork layout: keep the visual language close to the approved design. */
+    .page { background: rgba(0, 0, 0, .18); }
+    .brand-mark, .brand-footer-mark {
+      overflow: hidden;
+      border: 0;
+      border-radius: 50%;
+      background: #020403;
+      box-shadow: 0 0 28px rgba(200, 255, 0, .24);
+    }
+    .brand-mark img, .brand-footer-mark img { width: 100%; height: 100%; object-fit: cover; }
+    .hero {
+      display: flex;
+      align-items: center;
+      min-height: 650px;
+      padding: 54px 0 70px;
+      isolation: isolate;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0 calc((100vw - 100%) / -2);
+      z-index: -2;
+      background: linear-gradient(90deg, rgba(0, 0, 0, .9) 0%, rgba(0, 0, 0, .7) 35%, rgba(0, 0, 0, .1) 78%, rgba(0, 0, 0, .48) 100%), url("assets/dimcheck-banner.png") center / cover no-repeat;
+      filter: none;
+      transform: none;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0 calc((100vw - 100%) / -2);
+      z-index: -1;
+      background: linear-gradient(180deg, rgba(0, 0, 0, .05), rgba(0, 0, 0, .45));
+      border-bottom: 1px solid rgba(200, 255, 0, .18);
+    }
+    .hero > div:first-child { width: min(52%, 610px); }
+    .hero .kicker { display: none; }
+    .hero-copy { line-height: 1.65; }
+    .hero .visual-stack { display: none; }
+    .hero .button-icon, .bottom-copy .button-icon {
+      width: 36px;
+      height: 36px;
+      background: url("assets/dimcheck-logo.png") center / contain no-repeat;
+      font-size: 0;
+    }
+    .hero .pill { border-color: rgba(200, 255, 0, .5); background: rgba(0, 0, 0, .5); }
+    .feature-card { min-height: 196px; padding-top: 18px; }
+    .feature-icon { width: 102px; height: 92px; }
+    .screens-grid { gap: 14px; }
+    .screen-shot { background: rgba(255, 255, 255, .045); }
+    .bottom-cta {
+      background: linear-gradient(90deg, rgba(0, 0, 0, .58), rgba(0, 0, 0, .38)), url("assets/dimcheck-banner.png") center / cover no-repeat;
+    }
+    .wide-placeholder { border-color: transparent; background: transparent; }
+    .wide-placeholder::after { content: none; }
+    @media (max-width: 1040px) {
+      .hero > div:first-child { width: min(70%, 610px); }
+    }
+    @media (max-width: 760px) {
+      .hero { min-height: 610px; padding: 38px 0 54px; }
+      .hero::before { background-position: 63% center; }
+      .hero > div:first-child { width: 100%; }
+      .hero h1 { font-size: clamp(48px, 17vw, 72px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="page" id="top">
+    <header class="shell topbar" aria-label="網站頂部">
+      <a class="brand" href="#top" aria-label="Dim Check Club 掂策會主頁">
+        <span class="brand-mark"><img src="assets/dimcheck-logo.png" alt=""></span>
+        <span>
+          <strong class="brand-title">掂策會 <span>Dim Check Club</span></strong>
+          <span class="brand-sub">AI 數據分析 × 馬匹統計 × 深度研究</span>
+        </span>
+      </a>
+      <a class="nav-cta" href="https://app.dimcheck.vip/">
+        進入掂策會 APP <span aria-hidden="true">→</span>
+      </a>
+    </header>
+
+    <main>
+      <section class="shell hero" aria-labelledby="hero-title">
+        <div>
+          <div class="kicker">Dim Check Club 掂策會</div>
+          <h1 id="hero-title">捉住數據 <span>策出勝算</span></h1>
+          <p class="hero-copy">
+            由賽前分析，到賽後檢討，一個 App 全面掌握。用清晰數據、冷馬訊號及賽果派彩，幫你更快睇到關鍵位置。
+          </p>
+          <div class="cta-row">
+            <a class="app-button" href="https://app.dimcheck.vip/">
+              <span class="button-icon" aria-hidden="true">D</span>
+              立即進入掂策會 APP
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
+          <div class="trust-pills" aria-label="平台重點">
+            <span class="pill">即時更新</span>
+            <span class="pill">數據準確</span>
+            <span class="pill">簡單易用</span>
+          </div>
+        </div>
+
+        <div class="visual-stack" aria-label="App 圖片預留位置">
+          <div class="visual-card phone-side-left"><span>圖片位<br>App 統計畫面</span></div>
+          <div class="visual-card phone-main"><span>圖片位<br>主手機畫面</span></div>
+          <div class="visual-card phone-side-right"><span>圖片位<br>冷馬及派彩畫面</span></div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="features-title">
+        <div class="shell">
+          <div class="section-head">
+            <h2 class="section-title" id="features-title">掂策會有咩特別？</h2>
+          </div>
+
+          <div class="feature-grid">
+            <article class="feature-card">
+              <div class="feature-icon" aria-hidden="true"><img src="assets/dimcheck-icon-1.png" alt=""></div>
+              <h3>AI 勝率預測</h3>
+              <p>智能分析每場賽事，快速掌握形勢。</p>
+            </article>
+            <article class="feature-card">
+              <div class="feature-icon" aria-hidden="true"><img src="assets/dimcheck-icon-2.png" alt=""></div>
+              <h3>馬匹資料統計</h3>
+              <p>整合往績、評分及多項關鍵數據。</p>
+            </article>
+            <article class="feature-card">
+              <div class="feature-icon" aria-hidden="true"><img src="assets/dimcheck-icon-3.png" alt=""></div>
+              <h3>冷馬訊號</h3>
+              <p>發掘被市場忽略的潛力馬匹。</p>
+            </article>
+            <article class="feature-card">
+              <div class="feature-icon" aria-hidden="true"><img src="assets/dimcheck-icon-4.png" alt=""></div>
+              <h3>派彩</h3>
+              <p>賽後賽果及派彩，一目了然。</p>
+            </article>
+            <article class="feature-card">
+              <div class="feature-icon" aria-hidden="true"><img src="assets/dimcheck-icon-5.png" alt=""></div>
+              <h3>會員專享購物專區</h3>
+              <p>會員專屬優惠、限量產品及折扣。</p>
+            </article>
+            <article class="feature-card">
+              <div class="feature-icon" aria-hidden="true"><img src="assets/dimcheck-icon-6.png" alt=""></div>
+              <h3>會員專屬內容</h3>
+              <p>更多賽事分析、完整功能及更新。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="screens-title">
+        <div class="shell">
+          <div class="section-head">
+            <h2 class="section-title" id="screens-title">真實 App 介面展示</h2>
+          </div>
+
+          <div class="screens-grid">
+            <article class="screen-shot">
+              <h3>勝率預測</h3>
+              <img class="screen-image" src="assets/app-screens/prediction-screen.jpg" alt="掂策會勝率預測 App 畫面">
+            </article>
+            <article class="screen-shot">
+              <h3>馬匹資料統計</h3>
+              <img class="screen-image" src="assets/app-screens/stats-screen.jpg" alt="掂策會馬匹資料統計 App 畫面">
+            </article>
+            <article class="screen-shot">
+              <h3>賽果及派彩</h3>
+              <img class="screen-image" src="assets/app-screens/dividend-screen.jpg" alt="掂策會賽果及派彩 App 畫面">
+            </article>
+            <article class="screen-shot">
+              <h3>會員專享商店</h3>
+              <img class="screen-image" src="assets/app-screens/shop-screen.jpg" alt="掂策會會員專享商店 App 畫面">
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="plans-title">
+        <div class="shell">
+          <div class="section-head">
+            <h2 class="section-title" id="plans-title">會員方案</h2>
+          </div>
+
+          <div class="plans">
+            <article class="plan-card">
+              <div class="plan-head">
+                <div class="plan-symbol" aria-hidden="true"><img src="assets/dimcheck-icon-19.png" alt=""></div>
+                <h3>免費會員</h3>
+              </div>
+              <p class="plan-price">收費：$0／月</p>
+              <ul>
+                <li>每次賽事日可收看兩場賽事預測</li>
+                <li>每次賽事日可收看兩場賽事馬匹資料統計</li>
+              </ul>
+              <a class="plan-link primary" href="https://app.dimcheck.vip/signup">免費註冊</a>
+            </article>
+
+            <article class="plan-card vip">
+              <div class="plan-head">
+                <div class="plan-symbol" aria-hidden="true"><img src="assets/dimcheck-icon-25.png" alt=""></div>
+                <h3>星級會員</h3>
+              </div>
+              <p class="plan-price">收費$98/月，連續訂閱$88/月</p>
+              <ul>
+                <li>所有賽事完整預測</li>
+                <li>所有賽事馬匹資料統計</li>
+                <li>專屬會員優惠</li>
+              </ul>
+              <a class="plan-link primary" href="https://app.dimcheck.vip/signup">立即加入</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="bottom-cta" aria-labelledby="bottom-cta-title">
+        <div class="shell bottom-inner">
+          <div class="wide-placeholder" aria-hidden="true"></div>
+          <div class="bottom-copy">
+            <h2 id="bottom-cta-title">立即體驗掂策會，贏在起跑線！</h2>
+            <a class="app-button" href="https://app.dimcheck.vip/">
+              <span class="button-icon" aria-hidden="true">D</span>
+              立即進入掂策會 APP
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
+          <div class="wide-placeholder" aria-hidden="true"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell footer-grid">
+        <div>
+          <a class="brand" href="#top">
+            <span class="brand-footer-mark"><img src="assets/dimcheck-logo.png" alt=""></span>
+            <span>
+              <strong class="brand-title">掂策會 <span>Dim Check Club</span></strong>
+              <span class="brand-sub">專業賽馬數據分析平台</span>
+            </span>
+          </a>
+          <p class="footer-text">助你捉住數據，策出勝算！</p>
+        </div>
+
+        <div>
+          <h2 class="footer-title">聯絡我們</h2>
+          <ul class="footer-list">
+            <li><a href="mailto:enquiry@dimcheck.vip"><img class="contact-icon" src="assets/dimcheck-icon-7.png" alt="">enquiry@dimcheck.vip</a></li>
+            <li><a href="tel:+85266914138"><img class="contact-icon" src="assets/dimcheck-icon-8.png" alt="">+852 6691 4138</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="footer-title">關注我們</h2>
+          <div class="socials" aria-label="社交平台">
+            <a class="social" href="#" aria-label="Facebook"><img src="assets/dimcheck-icon-9.png" alt=""></a>
+            <a class="social" href="#" aria-label="Instagram"><img src="assets/dimcheck-icon-10.png" alt=""></a>
+            <a class="social" href="#" aria-label="Threads"><img src="assets/dimcheck-icon-11.png" alt=""></a>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="footer-title">免責聲明</h2>
+          <p class="footer-text">本平台提供的資料僅供參考，不構成任何投注建議。投資有風險，請理性投注。</p>
+        </div>
+      </div>
+      <p class="copyright">© 2026 掂策會 Dim Check Club. All Rights Reserved.</p>
+    </footer>
+
+    <a class="floating-whatsapp" href="https://wa.me/85266914138" target="_blank" rel="noopener" aria-label="WhatsApp 聯絡我們">
+      <img src="assets/dimcheck-icon-8.png" alt="">
+    </a>
+    <a class="back-top" href="#top" aria-label="回到頁頂">↑</a>
+  </div>
+</body>
+</html>
